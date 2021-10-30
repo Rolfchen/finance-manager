@@ -1,9 +1,9 @@
-import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { createEmotionCache, theme } from '../styles';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
+import initFirebase from '../utils/server/initFirebase';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -22,6 +22,7 @@ function MyApp({
   emotionCache = clientSideEmotionCache,
   pageProps,
 }: ExtendedAppProps) {
+  initFirebase();
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
