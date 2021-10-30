@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { NextPage } from 'next';
 import styled from '@emotion/styled';
@@ -5,6 +6,7 @@ import styled from '@emotion/styled';
 import { Button, TextField } from '@mui/material';
 
 import { PageContainer } from '../styles/layout';
+import { useState } from 'react';
 
 const LoginContainer = styled(PageContainer)`
   margin: 0px;
@@ -23,7 +25,7 @@ const LoginForm = styled.form`
     'title title'
     'heading heading'
     'username password'
-    'submit submit';
+    '. submit';
 
   & h1 {
     grid-area: title;
@@ -45,10 +47,11 @@ const passwordFieldStyle = css`
 
 const submitStyle = css`
   grid-area: submit;
-  width: 100%;
+  min-height: 56px;
 `;
 
 const Login: NextPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <LoginContainer>
       <LoginForm>
@@ -57,11 +60,14 @@ const Login: NextPage = () => {
         <TextField
           variant="outlined"
           label="Username"
+          placeholder="john@gmail.com"
           css={usernameFieldStyle}
         />
         <TextField
           variant="outlined"
           label="Password"
+          type={showPassword ? 'text' : 'password'}
+          placeholder="*********"
           css={passwordFieldStyle}
         />
         <Button variant="contained" type="submit" css={submitStyle}>
