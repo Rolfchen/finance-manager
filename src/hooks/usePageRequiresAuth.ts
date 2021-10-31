@@ -1,7 +1,6 @@
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useModalStateUpdater } from '../context/AppModalContext';
+import useToggleLoginModal from './useToggleLoginModal';
 
 /**
  * Hook to check whether a logged in user is present,
@@ -11,7 +10,7 @@ const usePageRequiresAuth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthReady, setIsAuthReady] = useState<boolean>(false);
   const auth = getAuth();
-  const { toggleModal } = useModalStateUpdater();
+  const { toggleModal } = useToggleLoginModal();
 
   onAuthStateChanged(auth, (firebaseUser) => {
     if (firebaseUser) {
@@ -26,8 +25,7 @@ const usePageRequiresAuth = () => {
   useEffect(() => {
     if (isAuthReady) {
       if (!user) {
-        console.log('Toggling Modal');
-        toggleModal('loginModal', true);
+        toggleModal(true);
       }
     }
   }, [toggleModal, isAuthReady, user]);

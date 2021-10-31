@@ -48,7 +48,7 @@ const appModalContextState: AppModalState = {
 };
 
 /**
- * Manages the internal states for the app modal
+ * Manages the internal states for the app level modals.
  */
 const AppModalStateContext = createContext<AppModalState | undefined>(
   undefined
