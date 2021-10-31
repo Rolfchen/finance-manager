@@ -3,10 +3,25 @@ import { css } from '@emotion/react';
 import { NextPage } from 'next';
 import styled from '@emotion/styled';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { Button, TextField, Alert, Collapse, AlertColor } from '@mui/material';
-import { PageContainer } from '../styles/layout';
+import {
+  Button,
+  TextField,
+  Alert,
+  Collapse,
+  AlertColor,
+  Dialog,
+} from '@mui/material';
+import { PageContainer } from '../../styles/layout';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FirebaseError } from '@firebase/util';
+import {
+  useModalState,
+  useModalStateUpdater,
+} from '../../context/AppModalContext';
+
+interface LoginModalProps {
+  onClose?: () => void;
+}
 
 const LoginContainer = styled(PageContainer)`
   margin: 0px;
@@ -32,7 +47,9 @@ const submitStyle = css`
   min-height: 56px;
 `;
 
-const Login: NextPage = () => {
+const LoginModal = ({ onClose }: LoginModalProps) => {
+  const { isOpen = false } = useModalState('loginModal');
+  const { toggleModal } = useModalStateUpdater();
   // TODO: add setShowPassword icon
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('');
@@ -51,7 +68,8 @@ const Login: NextPage = () => {
       );
       if (userCredentials) {
         console.log('Logged In');
-        setFormMessage('Success!');
+        setFormMessage('');
+        toggleModal('loginModal', false);
       }
     } catch (error) {
       setFormStatus('error');
@@ -77,7 +95,7 @@ const Login: NextPage = () => {
   };
 
   return (
-    <LoginContainer>
+    <Dialog open={isOpen}>
       <LoginForm onSubmit={handleSubmit}>
         <h1>Personal Finance Manager</h1>
         <h3>Login with your username and password</h3>
@@ -102,8 +120,8 @@ const Login: NextPage = () => {
           Login
         </Button>
       </LoginForm>
-    </LoginContainer>
+    </Dialog>
   );
 };
 
-export default Login;
+export default LoginModal;
