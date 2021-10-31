@@ -2,11 +2,11 @@
 import { css } from '@emotion/react';
 import { NextPage } from 'next';
 import styled from '@emotion/styled';
-
-import { Button, TextField } from '@mui/material';
-
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { Button, TextField, Alert } from '@mui/material';
 import { PageContainer } from '../styles/layout';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { FirebaseError } from '@firebase/util';
 
 const LoginContainer = styled(PageContainer)`
   margin: 0px;
@@ -52,18 +52,55 @@ const submitStyle = css`
 
 const Login: NextPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [formError, setFormError] = useState('');
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const auth = getAuth();
+    try {
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        username,
+        password
+      );
+      if (userCredentials) {
+        console.log('Logged In');
+      }
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        console.log('Firebase Error encountered', {
+          code: error.code,
+          message: error.message,
+        });
+      }
+      console.log('Unknown Error Encountered');
+    }
+  };
+
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <LoginContainer>
-      <LoginForm>
+      <LoginForm onSubmit={handleSubmit}>
         <h1>Personal Finance Manager</h1>
         <h2>Login</h2>
         <TextField
+          onChange={handleUsernameChange}
           variant="outlined"
           label="Username"
           placeholder="john@gmail.com"
           css={usernameFieldStyle}
         />
         <TextField
+          onChange={handlePasswordChange}
           variant="outlined"
           label="Password"
           type={showPassword ? 'text' : 'password'}
