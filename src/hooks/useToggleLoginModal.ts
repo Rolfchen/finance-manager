@@ -8,8 +8,15 @@ import { useModalStateUpdater } from '../context/AppModalContext';
 const useToggleLoginModal = () => {
   const { toggleModal: toggleModalWithKey } = useModalStateUpdater();
 
+  const toggleModal = useCallback(
+    (isOpen: boolean) => {
+      toggleModalWithKey('loginModal', isOpen);
+    },
+    [toggleModalWithKey]
+  );
+
   return {
-    toggleModal: (isOpen: boolean) => toggleModalWithKey('loginModal', isOpen),
+    toggleModal,
   };
 };
 

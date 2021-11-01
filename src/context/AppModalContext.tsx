@@ -39,8 +39,14 @@ const appModalReducer = (state: AppModalState, action: AppModalAction) => {
   }
 };
 
+/**
+ * Initial state of context.modals
+ */
 const appModals: Record<string, ModalState> = {};
 
+/**
+ * Initial state of the context
+ */
 const appModalContextState: AppModalState = {
   modals: {
     ...appModals,
@@ -119,6 +125,10 @@ export const useModalState = (key: string) => {
   return appModalState.modals?.[key] || { isOpen: false };
 };
 
+/**
+ * Access modal state updaters. Includes setting isOpen state for modals
+ * @returns
+ */
 export const useModalStateUpdater = () => {
   const appUpdater = useContext(AppModalUpdateContext);
   if (typeof appUpdater === 'undefined') {

@@ -6,6 +6,7 @@ import { CssBaseline } from '@mui/material';
 import initFirebase from '../utils/frontend/initFirebase';
 import AppModalProvider from '../context/AppModalContext';
 import LoginModal from '../components/Modals/LoginModal';
+import { UserProvider } from '../context/UserContext';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -29,9 +30,11 @@ function MyApp({
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
         <AppModalProvider>
-          <CssBaseline />
-          <Component {...pageProps} />
-          <LoginModal />
+          <UserProvider>
+            <CssBaseline />
+            <Component {...pageProps} />
+            <LoginModal />
+          </UserProvider>
         </AppModalProvider>
       </ThemeProvider>
     </CacheProvider>
