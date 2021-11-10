@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Avatar, Menu, MenuItem } from '@mui/material';
 import { useState } from 'react';
 import { useUserState } from '../../context/UserContext';
-
+import { useRouter } from 'next/router';
 import { signOutUser } from '../../utils';
 
 const NavBarContainer = styled.nav`
@@ -32,6 +32,7 @@ const ProfileContainer = styled.div`
 const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
+  const router = useRouter();
   const { user } = useUserState();
 
   const handleProfileClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,6 +41,13 @@ const NavBar = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = async () => {
+    const isSignedOut = await signOutUser();
+    if (isSignedOut) {
+      router.push('/login');
+    }
   };
 
   return (
@@ -65,7 +73,7 @@ const NavBar = () => {
           }}
         >
           <MenuItem>My Account</MenuItem>
-          <MenuItem onClick={signOutUser}>Logout</MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </ProfileContainer>
     </NavBarContainer>

@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <title>Personal Finance Manager</title>
       </Head>
       <main>
-        <ProtectedContentWrapper>
+        <ProtectedContentWrapper loginMethod="redirect">
           <NavBar />
           <Typography variant="h1">Welcome to the Base App</Typography>
         </ProtectedContentWrapper>

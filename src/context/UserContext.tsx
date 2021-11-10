@@ -19,13 +19,11 @@ export const UserContext = createContext<UserContextState | undefined>(
 export const UserProvider: FC = ({ children }) => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [isReady, setIsReady] = useState<boolean>(false);
-  const { toggleModal } = useToggleLoginModal();
   const auth = getAuth();
 
   useEffect(() => {
     if (!isReady && auth) {
       auth.onAuthStateChanged((firebaseUser) => {
-        console.log('Invoked state change');
         if (firebaseUser) {
           setUser(firebaseUser);
         } else {
@@ -35,15 +33,6 @@ export const UserProvider: FC = ({ children }) => {
       });
     }
   }, [isReady, auth]);
-
-  useEffect(() => {
-    if (isReady) {
-      if (!user) {
-        console.log('Start toggling');
-        toggleModal(true);
-      }
-    }
-  }, [isReady, user, toggleModal]);
 
   return (
     <UserContext.Provider
