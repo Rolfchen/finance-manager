@@ -1,6 +1,5 @@
 import { getAuth, User as FirebaseUser } from 'firebase/auth';
 import { createContext, FC, useContext, useEffect, useState } from 'react';
-import useToggleLoginModal from '../hooks/useToggleLoginModal';
 
 export interface UserProfile extends FirebaseUser {
   // TODO - Make this useful

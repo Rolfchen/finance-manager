@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import initFirebase from '../utils/frontend/initFirebase';
-import AppModalProvider from '../context/AppModalContext';
+import { AppModalProvider } from '../context/AppModal';
 import LoginModal from '../components/Modals/LoginModal';
 import { UserProvider } from '../context/UserContext';
 

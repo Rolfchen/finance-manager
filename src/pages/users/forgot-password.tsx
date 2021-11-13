@@ -1,5 +1,5 @@
-import PasswordResetRequest from '../components/Login/PasswordResetRequest';
-import { PageContainer } from '../styles/layout';
+import PasswordResetRequest from '@/domain/User/Login/PasswordResetRequest';
+import { PageContainer } from '../../styles/layout';
 
 const ForgotPassword = () => {
   return (

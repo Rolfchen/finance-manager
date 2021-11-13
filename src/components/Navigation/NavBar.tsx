@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { Avatar, Menu, MenuItem } from '@mui/material';
 import { useState } from 'react';
-import { useUserState } from '../../context/UserContext';
+import { signOutUser } from '@/utils';
+import { useUserState } from '@/context/UserContext';
 import { useRouter } from 'next/router';
-import { signOutUser } from '../../utils';
 
 const NavBarContainer = styled.nav`
   display: grid;
@@ -31,6 +31,9 @@ const ProfileContainer = styled.div`
   }
 `;
 
+/**
+ * The main menu bar appearing at the top of the page.
+ */
 const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);

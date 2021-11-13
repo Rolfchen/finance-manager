@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import LoginForm from '../components/Login/LoginForm';
+import LoginForm from '@/domain/User/Login/LoginForm';
 import { PageContainer } from '../styles/layout';
 
 const Login = () => {

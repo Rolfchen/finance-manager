@@ -1,14 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { AlertColor, Dialog } from '@mui/material';
-import { PageContainer } from '../../styles/layout';
-
-import { FirebaseError } from '@firebase/util';
-import {
-  useModalState,
-  useModalStateUpdater,
-} from '../../context/AppModalContext';
-import LoginForm from '../Login/LoginForm';
+import { Dialog } from '@mui/material';
+import LoginForm from '@/domain/User/Login/LoginForm';
+import { useModalState, useModalStateUpdater } from '@/context/AppModal';
 
 interface LoginModalProps {
   onClose?: () => void;
