@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {
@@ -13,34 +12,16 @@ import {
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FirebaseError } from '@firebase/util';
 import Link from 'next/link';
+import { Logger, Routing } from '@/utils';
+import { UserFormButton, UserFormContainer } from './styled';
 
 interface LoginFormProps {
   onSuccess?: () => void;
 }
 
-const LoginContainer = styled.form`
-  max-width: 800px;
-  margin: auto;
-  border-radius: ${({ theme }) => theme.shape.borderRadius}px;
-  border: ${({ theme }) => `1px solid ${theme.palette.grey[400]}`};
-  padding: ${({ theme }) => theme.spacing(4)};
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(2)};
-  & h1,
-  h2,
-  h3 {
-    margin: 0px;
-  }
-`;
-
 const ForgotPasswordContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
-
-const submitStyle = css`
-  min-height: 56px;
 `;
 
 const LoginForm = ({ onSuccess }: LoginFormProps) => {
@@ -71,7 +52,7 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
     } catch (error) {
       setFormStatus('error');
       if (error instanceof FirebaseError) {
-        console.log('Firebase Error encountered', {
+        Logger.error('Firebase Error encountered', {
           code: error.code,
           message: error.message,
         });
@@ -93,7 +74,7 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
   };
 
   return (
-    <LoginContainer onSubmit={handleSubmit}>
+    <UserFormContainer onSubmit={handleSubmit}>
       <h1>Personal Finance Manager</h1>
       <h3>Login with your username and password</h3>
       <TextField
@@ -115,9 +96,11 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
         <Alert severity={formStatus}>{formMessage}</Alert>
       </Collapse>
       <ForgotPasswordContainer>
-        <Link href="/forgot-password">Forgot your password?</Link>
+        <Link href={Routing.getNamedRoute('forgotPassword')}>
+          Forgot your password?
+        </Link>
       </ForgotPasswordContainer>
-      <Button variant="contained" type="submit" css={submitStyle}>
+      <UserFormButton variant="contained" type="submit">
         {isLoading ? (
           <>
             <CircularProgress color="secondary" />
@@ -126,8 +109,8 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
         ) : (
           'Login'
         )}
-      </Button>
-    </LoginContainer>
+      </UserFormButton>
+    </UserFormContainer>
   );
 };
 

@@ -6,17 +6,16 @@
  * in the system
  */
 class Logger {
-  public static error(message?: string) {
-    console.log(`Environment: ${process.env.NODE_ENV}`);
-    console.error(message);
+  public static error(message?: string, info?: unknown) {
+    console.error(message, info);
   }
 
-  public static debug(message?: string) {
-    console.debug(message);
+  public static debug(message?: string, info?: unknown) {
+    console.debug(message, info);
   }
 
-  public static info(message?: string) {
-    console.info(message);
+  public static info(message?: string, info?: unknown) {
+    console.info(message, info);
   }
 }
 

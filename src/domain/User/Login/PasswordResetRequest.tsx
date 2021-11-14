@@ -1,9 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import styled from '@emotion/styled';
 import Link from 'next/link';
 import { getAuth, sendPasswordResetEmail } from '@firebase/auth';
 import {
-  Button,
   TextField,
   Typography,
   CircularProgress,
@@ -12,19 +10,16 @@ import {
   Alert,
 } from '@mui/material';
 import { FirebaseError } from '@firebase/util';
+import { UserFormButton, UserFormContainer } from './styled';
+import { Routing } from '@/utils/frontend';
 
-const PasswordResetContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  max-width: 800px;
-  margin: auto;
-  gap: ${({ theme }) => theme.spacing(2)};
-  & button {
-    min-height: 56px;
-  }
-`;
-
+/**
+ * This component takes in a user email to REQUEST
+ * for password change. This one doesn't actually change the password
+ * @returns
+ */
 const PasswordResetRequest = () => {
+  // TODO: omit certain errors to prevent malicious retries
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [formMessage, setFormMessage] = useState('');
@@ -57,7 +52,7 @@ const PasswordResetRequest = () => {
   };
 
   return (
-    <PasswordResetContainer onSubmit={handleSubmit}>
+    <UserFormContainer onSubmit={handleSubmit}>
       <h1>Send password reset email</h1>
       <Typography variant="subtitle1">
         Enter your email (username) below to receive password reset email
@@ -73,8 +68,10 @@ const PasswordResetRequest = () => {
       <Collapse in={!!formMessage}>
         <Alert severity={formStatus}>{formMessage}</Alert>
       </Collapse>
-      {formStatus === 'success' && <Link href="/login">Back to login</Link>}
-      <Button variant="contained" type="submit">
+      {formStatus === 'success' && (
+        <Link href={Routing.getNamedRoute('login')}>Back to login</Link>
+      )}
+      <UserFormButton variant="contained" type="submit">
         {isLoading ? (
           <>
             <CircularProgress color="secondary" />
@@ -82,8 +79,8 @@ const PasswordResetRequest = () => {
         ) : (
           'Send password reset email'
         )}
-      </Button>
-    </PasswordResetContainer>
+      </UserFormButton>
+    </UserFormContainer>
   );
 };
 

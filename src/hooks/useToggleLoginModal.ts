@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useModalStateUpdater } from '../context/AppModalContext';
+import { useModalStateUpdater } from '@/context/AppModal';
 
 /**
  * Wrapper hook to toggle login modal via the app state modal
