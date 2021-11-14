@@ -1,34 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Finance Manager
 
-## Getting Started
+![GitHub package.json version](https://img.shields.io/github/package-json/v/Rolfchen/finance-manager)
 
-First, run the development server:
+This is a personal finance manager web application for managing budget, transactions and investments.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+The project is built with [NextJS](https://nextjs.org/), [Material UI 5](https://mui.com/) with [emotionjs](https://emotion.sh/docs/introduction) as the styling solution. If you're developing for this project, please make sure you refer to the documentation and each library's motivations
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Installation
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Pre-requisite
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- `nodejs`
+- `firebase account` - The project uses Firebase as the authentication engine. Firebase is free, create a Firebase account [here](https://firebase.google.com/docs/web/setup)
+- `yarn` - This is preferred over `npm`. The project includes a `yarn.lock`. If you're using `npm` please do not check in `package-lock.json`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Steps
 
-## Learn More
+1. Pull the repo (duh...)
+2. Run `yarn` in the `cli`. (Short for `yarn install`)
+3. Create a `.env.local` and copy the keys from `.env` . See [NextJS Environment variables](https://nextjs.org/docs/basic-features/environment-variables) for how this works.
+4. Add your firebase config to the `.env` file. Refer to [Firebase setup](https://firebase.google.com/docs/web/setup) for more detail
+5. `yarn dev` to start the project in the dev environment
 
-To learn more about Next.js, take a look at the following resources:
+# Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+TBA
