@@ -1,6 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  OAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from 'firebase/auth';
 import {
   Button,
   TextField,
@@ -9,10 +14,10 @@ import {
   AlertColor,
   CircularProgress,
 } from '@mui/material';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState, MouseEvent } from 'react';
 import { FirebaseError } from '@firebase/util';
 import Link from 'next/link';
-import { Logger, Routing } from '@/utils';
+import { Logger, MicrosoftAuthProvider, Routing } from '@/utils';
 import { UserFormButton, UserFormContainer } from './styled';
 
 interface LoginFormProps {
@@ -73,6 +78,29 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
     setPassword(e.target.value);
   };
 
+  const handleMicrosoftLogin = async (e: MouseEvent<HTMLButtonElement>) => {
+    const auth = getAuth();
+    setIsLoading(true);
+    try {
+      const result = await signInWithPopup(auth, MicrosoftAuthProvider);
+      const credentials = OAuthProvider.credentialFromResult(result);
+      setIsLoading(false);
+      setFormMessage('Success!');
+      setFormStatus('success');
+      if (credentials && onSuccess) {
+        onSuccess();
+      }
+    } catch (error) {
+      setIsLoading(false);
+      if (error instanceof FirebaseError) {
+        setFormMessage(error.message);
+      } else {
+        setFormMessage('Unknown error has occured');
+      }
+      setFormStatus('error');
+    }
+  };
+
   return (
     <UserFormContainer onSubmit={handleSubmit}>
       <h1>Personal Finance Manager</h1>
@@ -109,6 +137,9 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
         ) : (
           'Login'
         )}
+      </UserFormButton>
+      <UserFormButton onClick={handleMicrosoftLogin}>
+        Login with Microsoft
       </UserFormButton>
     </UserFormContainer>
   );
