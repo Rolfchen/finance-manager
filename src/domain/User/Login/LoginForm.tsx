@@ -84,7 +84,6 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
     try {
       const result = await signInWithPopup(auth, MicrosoftAuthProvider);
       const credentials = OAuthProvider.credentialFromResult(result);
-      Logger.info('Credentials', credentials);
       setIsLoading(false);
       setFormMessage('Success!');
       setFormStatus('success');
