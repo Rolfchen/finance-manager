@@ -9,6 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "jest",
+    "cy:test": "cypress run",
     "cy:open": "cypress open"
   },
   "dependencies": {
