@@ -4,7 +4,7 @@ import { useUserState } from '../context/UserContext';
 import useToggleLoginModal from '../hooks/useToggleLoginModal';
 
 interface ProtectedContentWrapperProps {
-  loginMethod: 'modal' | 'redirect';
+  loginMethod?: 'modal' | 'redirect';
 }
 /**
  * Wrapper to wrap protected content. If user is null, the content is hidden and a login modal will show up

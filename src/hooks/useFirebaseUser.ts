@@ -38,9 +38,7 @@ const useFirebaseUser = (
         onReady(user);
       }
     } else {
-      console.log('Invoked');
       auth.onAuthStateChanged((firebaseUser) => {
-        console.log('Auth state changed');
         if (firebaseUser) {
           setUser(firebaseUser);
           setIsAuthReady(true);

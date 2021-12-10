@@ -14,12 +14,18 @@ interface ButtonProps extends MuiButtonProps {
  * @param param0
  * @returns
  */
-const Button = ({ isLoading, children, ...parentButtonProps }: ButtonProps) => {
+const Button = ({
+  isLoading = false,
+  loadingText,
+  children,
+  ...parentButtonProps
+}: ButtonProps) => {
   return (
     <MuiButton {...parentButtonProps}>
       {isLoading ? (
         <>
           <CircularProgress color="secondary" />
+          {loadingText || ''}
         </>
       ) : (
         children

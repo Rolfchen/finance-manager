@@ -24,6 +24,7 @@
       "@/data/*": ["./src/data/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/types/*": ["./src/types/*"],
+      "@/testUtils/*": ["./src/__testUtils/*"],
       "@/components": ["./src/components"],
       "@/domain": ["./src/domain"],
       "@/context": ["./src/context"],
@@ -31,9 +32,10 @@
       "@/styles": ["./src/styles"],
       "@/data": ["./src/data"],
       "@/utils": ["./src/utils"],
-      "@/types": ["./src/types"]
+      "@/types": ["./src/types"],
+      "@/testUtils": ["./src/__testUtils"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "cypress"]
 }
