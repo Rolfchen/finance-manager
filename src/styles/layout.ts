@@ -11,6 +11,7 @@ export const PageContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   max-width: 1440px;
+  margin: auto;
   padding: ${({ theme, withNavigation = true }: PageContainerProps) =>
     theme?.spacing(withNavigation ? 8 : 4, 4, 4, 4)};
   ${theme.breakpoints.down('sm')} {

@@ -7,9 +7,9 @@ import {
   CircularProgress,
   Collapse,
   AlertColor,
-  Alert,
 } from '@mui/material';
 import { FirebaseError } from '@firebase/util';
+import { Alert } from '@/components';
 import { UserFormButton, UserFormContainer } from './styled';
 import { Routing } from '@/utils/frontend';
 
@@ -58,6 +58,7 @@ const PasswordResetRequest = () => {
         Enter your email (username) below to receive password reset email
       </Typography>
       <TextField
+        id="reset-request-username"
         variant="outlined"
         label="Username"
         type="email"
@@ -66,7 +67,9 @@ const PasswordResetRequest = () => {
         onChange={handleChange}
       />
       <Collapse in={!!formMessage}>
-        <Alert severity={formStatus}>{formMessage}</Alert>
+        <Alert aria-label="login result" severity={formStatus}>
+          {formMessage}
+        </Alert>
       </Collapse>
       {formStatus === 'success' && (
         <Link href={Routing.getNamedRoute('login')}>Back to login</Link>

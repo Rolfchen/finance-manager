@@ -1,5 +1,5 @@
 import React, { FormEvent, useCallback, useState } from 'react';
-import { Alert, AlertColor, Collapse, TextField } from '@mui/material';
+import { AlertColor, Collapse, TextField } from '@mui/material';
 import { UserFormButton, UserFormContainer } from './styled';
 import {
   confirmPasswordReset,
@@ -8,6 +8,7 @@ import {
 } from '@firebase/auth';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { Alert } from '@/components';
 import { Logger, Routing } from '@/utils/frontend';
 
 /**
@@ -72,6 +73,7 @@ const PasswordResetForm = () => {
     <UserFormContainer onSubmit={handleSubmit}>
       <h1>Reset your password</h1>
       <TextField
+        id="reset-password"
         variant="outlined"
         label="New password"
         type="password"
@@ -80,6 +82,7 @@ const PasswordResetForm = () => {
         onChange={(e) => setNewPassword(e.target.value)}
       />
       <TextField
+        id="reset-confirm-password"
         variant="outlined"
         label="Confirm new password"
         type="password"
