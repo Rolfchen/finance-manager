@@ -3,8 +3,9 @@ import { FC, useEffect } from 'react';
 import { useUserState } from '../context/UserContext';
 import useToggleLoginModal from '../hooks/useToggleLoginModal';
 
-interface ProtectedContentWrapperProps {
-  loginMethod?: 'modal' | 'redirect';
+export type LoginMethod = 'modal' | 'redirect';
+export interface ProtectedContentWrapperProps {
+  loginMethod?: LoginMethod;
 }
 /**
  * Wrapper to wrap protected content. If user is null, the content is hidden and a login modal will show up
