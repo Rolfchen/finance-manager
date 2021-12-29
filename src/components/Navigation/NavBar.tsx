@@ -18,9 +18,11 @@ const NavBarContainer = styled.nav`
 
 const LogoContainer = styled.div``;
 
-const MenuList = styled.ul``;
+const MenuContainer = styled.div``;
 
 const ProfileContainer = styled.div`
+  display: flex;
+  align-items: center;
   & button {
     border: none;
     background-color: ${({ theme }) => theme.palette.primary.main};
@@ -31,10 +33,17 @@ const ProfileContainer = styled.div`
   }
 `;
 
+export interface NavBarProps {
+  logo?: React.ReactNode;
+  title?: string;
+  children?: React.ReactNode;
+  height?: number;
+}
+
 /**
  * The main menu bar appearing at the top of the page.
  */
-const NavBar = () => {
+const NavBar = ({ logo, title, children }: NavBarProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
   const router = useRouter();
@@ -57,8 +66,11 @@ const NavBar = () => {
 
   return (
     <NavBarContainer>
-      <LogoContainer />
-      <MenuList />
+      <LogoContainer>
+        {logo}
+        {title && <h3>{title}</h3>}
+      </LogoContainer>
+      <MenuContainer>{children}</MenuContainer>
       <ProfileContainer>
         <Avatar
           component="button"

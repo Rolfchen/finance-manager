@@ -10,3 +10,7 @@ Given('I navigate to the {string} page', (pageSlug: string) => {
       break;
   }
 });
+
+When(`I click on the {string} link`, (linkName: string) => {
+  cy.findByRole('link', { name: linkName }).click();
+});

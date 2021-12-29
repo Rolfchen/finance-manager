@@ -1,3 +1,4 @@
+import DashboardFrame from '@/domain/App/DashboardFrame';
 import { Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
@@ -11,13 +12,9 @@ const Home: NextPage = () => {
       <Head>
         <title>Personal Finance Manager</title>
       </Head>
-
-      <ProtectedContentWrapper loginMethod="redirect">
-        <NavBar />
-        <PageContainer as="main">
-          <Typography variant="h1">Welcome to the Base App</Typography>
-        </PageContainer>
-      </ProtectedContentWrapper>
+      <DashboardFrame loginMethod="redirect">
+        <Typography variant="h1">Welcome to the Base App</Typography>
+      </DashboardFrame>
     </div>
   );
 };

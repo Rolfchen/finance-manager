@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
+import { ChangeEvent, FormEvent, useState, MouseEvent } from 'react';
 import {
   getAuth,
   OAuthProvider,
@@ -7,16 +8,15 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import {
-  Button,
   TextField,
-  Alert,
   Collapse,
   AlertColor,
   CircularProgress,
 } from '@mui/material';
-import { ChangeEvent, FormEvent, useState, MouseEvent } from 'react';
+
 import { FirebaseError } from '@firebase/util';
 import Link from 'next/link';
+import { Alert } from '@/components';
 import { Logger, MicrosoftAuthProvider, Routing } from '@/utils';
 import { UserFormButton, UserFormContainer } from './styled';
 
@@ -102,10 +102,11 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
   };
 
   return (
-    <UserFormContainer onSubmit={handleSubmit}>
+    <UserFormContainer onSubmit={handleSubmit} aria-label="User login">
       <h1>Personal Finance Manager</h1>
       <h3>Login with your username and password</h3>
       <TextField
+        id="login-username"
         type="email"
         onChange={handleUsernameChange}
         variant="outlined"
@@ -113,6 +114,7 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
         placeholder="my.name@gmail.com"
       />
       <TextField
+        id="login-password"
         onChange={handlePasswordChange}
         variant="outlined"
         label="Password"
@@ -121,7 +123,9 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
       />
 
       <Collapse in={!!formMessage}>
-        <Alert severity={formStatus}>{formMessage}</Alert>
+        <Alert aria-label="login result" severity={formStatus}>
+          {formMessage}
+        </Alert>
       </Collapse>
       <ForgotPasswordContainer>
         <Link href={Routing.getNamedRoute('forgotPassword')}>
