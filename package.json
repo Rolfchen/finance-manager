@@ -3,7 +3,10 @@
   "version": "0.0.3",
   "private": true,
   "scripts": {
-    "dev": "yarn workspace website dev"
+    "dev": "yarn workspace de-fend dev & yarn workspace website dev",
+    "lint": "yarn workspace website lint",
+    "test": "yarn workspace website test",
+    "typecheck": "yarn workspace website typecheck"
   },
   "workspaces": [
     "website",
