@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useReducer } from 'react';
+import { createContext, useCallback, useReducer } from 'react';
 
 export interface ModalState {
   isOpen: boolean;
