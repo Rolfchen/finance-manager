@@ -29,6 +29,8 @@ jobs:
           echo NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }} >> .env
           echo NEXT_PUBLIC_LOG_LEVEL=debug >> .env
         #  cat .env
+      - name: Build submodules
+        run: yarn build:dependencies
       - name: Lint
         run: yarn lint
       - name: Type Check
