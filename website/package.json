@@ -20,15 +20,18 @@
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.6",
     "axios": "^0.24.0",
+    "de-fend": "1.0.0",
     "firebase": "^9.2.0",
     "next": "12.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "de-fend": "1.0.0"
+    "react-table": "^7.7.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
     "@cypress/browserify-preprocessor": "^3.0.2",
     "@testing-library/cypress": "^8.0.2",
+    "@testing-library/dom": "^8.11.2",
     "@testing-library/jest-dom": "^5.16.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
@@ -43,7 +46,8 @@
     "eslint-config-next": "12.0.1",
     "jest": "^27.3.1",
     "ts-jest": "^27.0.7",
-    "typescript": "4.4.4"
+    "typescript": "4.4.4",
+    "@types/react-table": "^7.7.9"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
