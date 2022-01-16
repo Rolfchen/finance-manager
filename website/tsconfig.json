@@ -36,6 +36,11 @@
       "@/testUtils": ["./src/__testUtils"]
     }
   },
+  "references": [
+    {
+      "path": "../de-fend"
+    }
+  ],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "cypress"]
 }
