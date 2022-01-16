@@ -6,7 +6,8 @@
     "dev": "yarn workspace de-fend dev & yarn workspace website dev",
     "lint": "yarn workspace website lint",
     "test": "yarn workspace website test",
-    "typecheck": "yarn workspace website typecheck"
+    "typecheck": "yarn workspace website typecheck",
+    "vercel-build": "yarn workspace website build"
   },
   "workspaces": [
     "website",
