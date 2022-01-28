@@ -8,7 +8,8 @@
     "test": "yarn workspace website test",
     "build:dependencies": "yarn workspace de-fend build",
     "typecheck": "yarn workspace website typecheck",
-    "vercel-build": "yarn build:dependencies && yarn workspace website build"
+    "update-modules": "git submodule update --remote",
+    "vercel-build": "yarn update-modules && yarn build:dependencies && yarn workspace website build"
   },
   "workspaces": [
     "website",
