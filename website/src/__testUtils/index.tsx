@@ -3,8 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@/styles';
 import { RenderOptions } from '@testing-library/react';
 import { render } from '@testing-library/react';
-import { AppModalProvider } from '@/context/AppModal';
-import { UserContext } from '@/context/UserContext';
+import { UserContext, AppModalProvider } from 'de-fend';
 import mockUser from './mocks/mockUsers.stub';
 
 const MockProvider: FC = ({ children }) => {

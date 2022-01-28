@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { FC, useEffect } from 'react';
-import { useUserState } from '../context/UserContext';
-import useToggleLoginModal from '../hooks/useToggleLoginModal';
+import { useUserState, useToggleLoginModal } from 'de-fend';
 
 export type LoginMethod = 'modal' | 'redirect';
 export interface ProtectedContentWrapperProps {

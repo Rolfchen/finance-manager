@@ -3,48 +3,16 @@
   "version": "0.0.3",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit",
-    "test": "jest",
-    "cy:test": "cypress run",
-    "cy:open": "cypress open"
+    "dev": "yarn workspace de-fend dev & yarn workspace website dev",
+    "lint": "yarn workspace website lint",
+    "test": "yarn workspace website test",
+    "build:dependencies": "yarn workspace de-fend build",
+    "typecheck": "yarn workspace website typecheck",
+    "update-modules": "git submodule update --remote",
+    "vercel-build": "yarn update-modules && yarn build:dependencies && yarn workspace website build"
   },
-  "dependencies": {
-    "@emotion/cache": "^11.5.0",
-    "@emotion/react": "^11.5.0",
-    "@emotion/server": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
-    "@mui/icons-material": "^5.0.5",
-    "@mui/material": "^5.0.6",
-    "axios": "^0.24.0",
-    "firebase": "^9.2.0",
-    "next": "12.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "@cypress/browserify-preprocessor": "^3.0.2",
-    "@testing-library/cypress": "^8.0.2",
-    "@testing-library/jest-dom": "^5.16.0",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/cypress-cucumber-preprocessor": "^4.0.1",
-    "@types/jest": "^27.0.2",
-    "@types/node": "16.11.6",
-    "@types/react": "17.0.33",
-    "cypress": "^9.1.1",
-    "cypress-cucumber-preprocessor": "^4.3.1",
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.1",
-    "jest": "^27.3.1",
-    "ts-jest": "^27.0.7",
-    "typescript": "4.4.4"
-  },
-  "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true
-  }
+  "workspaces": [
+    "website",
+    "de-fend"
+  ]
 }

@@ -2,9 +2,6 @@ import DashboardFrame from '@/domain/App/DashboardFrame';
 import { Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { NavBar } from '../components';
-import ProtectedContentWrapper from '../components/ProtectedContentWrapper';
-import { PageContainer } from '../styles/layout';
 
 const Home: NextPage = () => {
   return (

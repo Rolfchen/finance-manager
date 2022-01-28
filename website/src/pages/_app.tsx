@@ -1,12 +1,15 @@
 import type { AppProps } from 'next/app';
-import { createEmotionCache, theme } from '../styles';
+import { theme } from '../styles';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
-import initFirebase from '../utils/frontend/initFirebase';
-import { AppModalProvider } from '../context/AppModal';
-import LoginModal from '../components/Modals/LoginModal';
-import { UserProvider } from '../context/UserContext';
+import {
+  initFirebase,
+  AppModalProvider,
+  FirebaseLoginModal as LoginModal,
+  UserProvider,
+  createEmotionCache,
+} from 'de-fend';
 
 const clientSideEmotionCache = createEmotionCache();
 

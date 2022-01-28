@@ -1,4 +1,4 @@
-import { NavBar } from '@/components/Navigation';
+import { DashboardNavBar, signOutUser } from 'de-fend';
 import ProtectedContentWrapper, {
   LoginMethod,
 } from '@/components/ProtectedContentWrapper';
@@ -18,7 +18,7 @@ const DashboardFrame = ({
   const FrameContainer = isProtected ? ProtectedContentWrapper : 'div';
   return (
     <FrameContainer loginMethod={loginMethod}>
-      <NavBar title="Finance Manager" />
+      <DashboardNavBar title="Finance Manager" />
       <PageContainer as="main">{children}</PageContainer>
     </FrameContainer>
   );
