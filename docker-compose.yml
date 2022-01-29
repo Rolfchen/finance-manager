@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  mssql:
+    container_name: finance-db
+    build: .
+    ports:
+      - '1433:1433'
+      - '1434:1434'
+      - '1431:1431'
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: T3stItNow!
+    networks:
+      - appNetwork
+
+networks:
+  appNetwork:
+    name: finance_db_network

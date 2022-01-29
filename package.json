@@ -3,16 +3,22 @@
   "version": "0.0.3",
   "private": true,
   "scripts": {
+    "db": "docker-compose up",
     "dev": "yarn workspace de-fend dev & yarn workspace website dev",
     "lint": "yarn workspace website lint",
     "test": "yarn workspace website test",
     "build:dependencies": "yarn workspace de-fend build",
     "typecheck": "yarn workspace website typecheck",
     "update-modules": "git submodule update --remote",
-    "vercel-build": "yarn update-modules && yarn build:dependencies && yarn workspace website build"
+    "vercel-build": "yarn update-modules && yarn build:dependencies && yarn workspace website build",
+    "typeorm": "yarn workspace website typeorm",
+    "db:create": "docker exec finance-db /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P T3stItNow! -i ./scripts/create-db.sql",
+    "db:up": "ENV=local yarn typeorm migration:run",
+    "db:down": "ENV=local yarn typeorm migration:revert"
   },
   "workspaces": [
     "website",
-    "de-fend"
+    "de-fend",
+    "de-db-relational"
   ]
 }
