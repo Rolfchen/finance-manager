@@ -15,8 +15,8 @@ module.exports = {
     encrypt: process.env.ENV === 'local' ? false : true,
     trustServerCertificate: process.env.ENV === 'local' ? true : false,
   },
-  entities: ['./src/entities/*.ts'],
-  migrations: ['./migration/*.ts'],
+  entities: ['./server/entities/*.ts'],
+  migrations: ['./server/migration/*.ts'],
   cli: {
     migrationsDir: 'migration',
   },

@@ -36,3 +36,21 @@ Local DB connection detail can be found in the docker files. It is recommended t
 # Development
 
 TBA
+
+## Folder Structure
+
+- All "utility" folders (components, context, hooks) etc. are in lower case. All "Class" or "Class-like" (React pure components) files should be in `CapitalCase`. Files under `pages` should be in lower, `kebab-case` or `snake_case` for URL routing reasons. Anything else should be in `camelCase`.
+- Frontend folders:
+
+  - `domain` - Separate major "groups", "concerns" in this folder. (i.e. `/User`, `Authentication`).
+  - `components` - React components
+  - `context` - React context
+  - `hooks` - React hooks
+  - `styles` - Styling related.
+
+- Backend folders:
+
+  - `services` - Usually data services. These are generally classes, but there's no set rule.
+  - `entities` - Database entities
+
+- The `utils` folder is used for utility classes. If specific for frontend or backend, place them in `utils/frontend/*` or `utils/backend/*`

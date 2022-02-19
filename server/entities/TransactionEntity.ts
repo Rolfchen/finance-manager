@@ -10,6 +10,7 @@ export interface ITransactionEntity {
   bucket?: string;
   tags?: string[]; // comma separated string?
   comment?: string;
+  merchant?: string;
 }
 
 /**
@@ -58,4 +59,7 @@ export class TransactionEntity implements ITransactionEntity {
 
   @Column('text')
   public comment?: string;
+
+  @Column('text')
+  public merchant?: string;
 }

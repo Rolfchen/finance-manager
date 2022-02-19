@@ -40,6 +40,9 @@
   "references": [
     {
       "path": "../de-fend"
+    },
+    {
+      "path": "../server"
     }
   ],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
