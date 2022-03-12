@@ -24,6 +24,7 @@ const getMSSqlConnection = async (entities?: any[]): Promise<Connection> => {
     ...getSqlServerConnectionConfig(),
     entities,
   };
+  // TODO - remove the console log later.
   console.log(config);
   const connection = await createConnection(config);
   return connection;
