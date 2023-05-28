@@ -1,7 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from './UserEntity';
 
 export interface ITransactionEntity {
   id: string;
+  userId: string;
   date: Date;
   amount: number;
   source: string;
@@ -21,8 +23,11 @@ export interface ITransactionEntity {
   name: 'Transaction',
 })
 export class TransactionEntity implements ITransactionEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   public id!: string;
+
+  @Column('userId')
+  public userId!: string;
 
   @Column('date')
   public date!: Date;
@@ -62,4 +67,7 @@ export class TransactionEntity implements ITransactionEntity {
 
   @Column('text')
   public merchant?: string;
+
+  @ManyToOne(() => UserEntity, (user) => user.id)
+  public user!: UserEntity;
 }

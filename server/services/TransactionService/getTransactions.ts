@@ -14,7 +14,7 @@ interface GetTransactionFilters {
 const getTransactions = async (
   filters: GetTransactionFilters
 ): Promise<TransactionEntity[]> => {
-  const connection = await getMSSqlConnection([TransactionEntity]);
+  const connection = await getMSSqlConnection();
   console.log('Connection: ', connection);
   const entityManager = connection.manager;
   const transactionRepo = connection.getRepository(TransactionEntity);

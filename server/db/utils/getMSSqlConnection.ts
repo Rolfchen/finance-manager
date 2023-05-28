@@ -1,3 +1,5 @@
+import { TransactionEntity } from 'entities/TransactionEntity';
+import { UserEntity } from 'entities/UserEntity';
 import {
   Connection,
   ConnectionNotFoundError,
@@ -19,10 +21,10 @@ const getMSSqlConnection = async (entities?: any[]): Promise<Connection> => {
       throw err;
     }
   }
-
+  // Specific to this project due to entities.
   const config = {
     ...getSqlServerConnectionConfig(),
-    entities,
+    entities: [...(entities || []), TransactionEntity, UserEntity],
   };
   // TODO - remove the console log later.
   console.log(config);

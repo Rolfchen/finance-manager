@@ -12,12 +12,13 @@ module.exports = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   extra: {
-    encrypt: process.env.ENV === 'local' ? false : true,
-    trustServerCertificate: process.env.ENV === 'local' ? true : false,
+    encrypt: process.env.DB_ENCRYPTED === 'false' ? false : true,
+    trustServerCertificate:
+      process.env.DB_TRUSTED_CLIENT === 'true' ? true : false,
   },
   entities: ['./server/entities/*.ts'],
   migrations: ['./server/migration/*.ts'],
   cli: {
-    migrationsDir: 'migration',
+    migrationsDir: 'server/migration',
   },
 };
