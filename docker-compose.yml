@@ -13,7 +13,15 @@ services:
       MSSQL_SA_PASSWORD: T3stItNow!
     networks:
       - appNetwork
-
+  postgres:
+    container_name: financ-db-postgres
+    image: arm64v8/postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: T3stItNow!
+      POSTGRES_USER: sa
+      POSTGRES_DB: FinanceDB
 networks:
   appNetwork:
     name: finance_db_network
